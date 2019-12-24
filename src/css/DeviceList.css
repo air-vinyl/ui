@@ -1,0 +1,9 @@
+.deviceList {
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.deviceList img {
+  width: 80%;
+}
