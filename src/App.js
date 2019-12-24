@@ -2,26 +2,16 @@ import React from 'react'
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from 'react-router-dom'
 import DeviceList from './pages/DeviceList'
 import Header from './components/Header'
+import Footer from './components/Footer'
 
-function App () {
+function App ({ version }) {
   return (
-    <Router>
+    <Router style={{ minHeight: '100vh' }}>
       <link href='https://fonts.googleapis.com/css?family=Lato&display=swap' rel='stylesheet' />
-      {/* <nav>
-          <ul>
-            <li>
-              <Link to='/'>Home</Link>
-            </li>
-            <li>
-              <Link to='/settings'>Settings</Link>
-            </li>
-          </ul>
-        </nav> */}
       <Header />
       <Switch>
         <Route path='/settings'>
@@ -31,6 +21,7 @@ function App () {
           <DeviceList />
         </Route>
       </Switch>
+      <Footer version={version} />
     </Router>
   )
 }

@@ -4,7 +4,9 @@ import './css/index.css'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 
-ReactDOM.render(<App />, document.getElementById('root'))
+import packageJson from '../package.json'
+
+ReactDOM.render(<App version={packageJson.version} />, document.getElementById('root'))
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

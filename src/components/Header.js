@@ -1,6 +1,6 @@
 import React from 'react'
-import '../css/DeviceList.css'
 import logo from '../img/air-vinyl.svg'
+import { Link } from 'react-router-dom'
 
 const containerStyle = {
   width: '100%',
@@ -15,9 +15,11 @@ const imgStyle = {
 
 function Header () {
   return (
-    <div style={containerStyle}>
-      <img style={imgStyle} preserveAspectRatio='none' src={logo} />
-    </div>
+    <Link to='/'>
+      <div style={containerStyle}>
+        <img style={imgStyle} preserveAspectRatio='none' src={logo} />
+      </div>
+    </Link>
   )
 }
 
