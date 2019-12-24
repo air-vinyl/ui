@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import '../css/DeviceList.css'
 import Device from '../components/Device'
+import VolumeSlider from '../components/VolumeSlider'
 
 const testData = [
   {
@@ -22,6 +23,7 @@ const testData = [
 ]
 
 function DeviceList () {
+  const [volume, setVolume] = useState(30)
   const [devices, setDevices] = useState(testData)
 
   const onTogglePlaying = (toggleDevice) => {
@@ -35,6 +37,7 @@ function DeviceList () {
 
   return (
     <div className='deviceList'>
+      <VolumeSlider onVolume={setVolume} setVolume={volume} />
       {devices.map((device) => <Device onTogglePlaying={onTogglePlaying} key={device.id} device={device} />)}
     </div>
   )
