@@ -22,14 +22,14 @@ function Device ({ device, onTogglePlaying }) {
     height: 1
   }
 
-  const checkBoxClick = () => {
+  const toggleClick = () => {
     onTogglePlaying(device)
   }
 
   return (
-    <div style={containerStyle}>
+    <div onClick={toggleClick} style={containerStyle}>
       <div style={rowStyle}>
-        <CheckBox state={device.playing} onClick={checkBoxClick} />
+        <CheckBox state={device.playing} onClick={toggleClick} />
         <p className='italics'>{device.name}</p>
       </div>
       <div style={borderStyle} />
