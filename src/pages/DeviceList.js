@@ -37,7 +37,7 @@ function DeviceList () {
 
   return (
     <div className='deviceList'>
-      <VolumeSlider onVolume={setVolume} setVolume={volume} />
+      <VolumeSlider onVolume={setVolume} volume={volume} />
       {devices.map((device) => <Device onTogglePlaying={onTogglePlaying} key={device.id} device={device} />)}
     </div>
   )

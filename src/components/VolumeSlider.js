@@ -67,8 +67,6 @@ const IOSSlider = withStyles({
 })(Slider)
 
 function VolumeSlider ({ onVolume, volume }) {
-  const [value] = React.useState(volume)
-
   const handleChange = (event, newValue) => {
     onVolume(newValue)
   }
@@ -76,7 +74,7 @@ function VolumeSlider ({ onVolume, volume }) {
   return (
     <div style={containerStyle}>
       <FontAwesomeIcon style={iconStyle} icon={faVolumeDown} color='#999' />
-      <IOSSlider value={value} onChange={handleChange} aria-labelledby='continuous-slider' />
+      <IOSSlider value={volume} onChange={handleChange} aria-labelledby='continuous-slider' />
       <FontAwesomeIcon style={iconStyle} icon={faVolumeUp} color='#999' />
     </div>
   )
