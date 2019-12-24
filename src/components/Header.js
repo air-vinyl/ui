@@ -17,7 +17,7 @@ function Header () {
   return (
     <Link to='/'>
       <div style={containerStyle}>
-        <img style={imgStyle} preserveAspectRatio='none' src={logo} />
+        <img alt='logo' style={imgStyle} preserveAspectRatio='none' src={logo} />
       </div>
     </Link>
   )

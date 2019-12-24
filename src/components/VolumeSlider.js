@@ -67,7 +67,7 @@ const IOSSlider = withStyles({
 })(Slider)
 
 function VolumeSlider ({ onVolume, volume }) {
-  const [value, setValue] = React.useState(volume)
+  const [value] = React.useState(volume)
 
   const handleChange = (event, newValue) => {
     onVolume(newValue)
