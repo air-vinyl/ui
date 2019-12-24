@@ -29,7 +29,7 @@ function Device ({ device, onTogglePlaying }) {
   return (
     <div onClick={toggleClick} style={containerStyle}>
       <div style={rowStyle}>
-        <CheckBox state={device.playing} onClick={toggleClick} />
+        <CheckBox state={device.playing} onClick={() => {}} />
         <p className='italics'>{device.name}</p>
       </div>
       <div style={borderStyle} />
