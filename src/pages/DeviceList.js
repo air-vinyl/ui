@@ -1,30 +1,37 @@
-import React, { useState } from 'react'
+/* global fetch */
+
+import React, { useState, useEffect } from 'react'
 import '../css/DeviceList.css'
 import Device from '../components/Device'
 import VolumeSlider from '../components/VolumeSlider'
 
-const testData = [
-  {
-    id: 1,
-    name: 'Kitchen HomePod',
-    playing: false,
-    type: 'homepod'
-  }, {
-    id: 2,
-    name: 'Living-Room',
-    playing: false,
-    type: 'speaker'
-  }, {
-    id: 3,
-    name: 'Hemmabio',
-    playing: false,
-    type: 'appletv'
-  }
-]
+async function setConfiguration (params) {
+  const body = JSON.stringify(params)
+  const headers = { 'Content-Type': 'application/json' }
+  await fetch('/api/configuration', { method: 'PATCH', body, headers })
+}
+
+async function getDevices () {
+  console.log('fetching!')
+  const res = await fetch('http://localhost:3000/api/devices')
+  const body = await res.json()
+  console.log(body)
+  return body
+}
 
 function DeviceList () {
   const [volume, setVolume] = useState(30)
-  const [devices, setDevices] = useState(testData)
+  const [devices, setDevices] = useState([])
+
+  useEffect(() => {
+    getDevices().then(setDevices)
+    const id = setInterval(async () => {
+      console.log('fetching')
+      getDevices().then(setDevices)
+    }, 5000)
+
+    return () => clearInterval(id)
+  }, [])
 
   const onTogglePlaying = (toggleDevice) => {
     setDevices(devices.map(device => {
@@ -35,6 +42,11 @@ function DeviceList () {
       }
       return device
     }))
+    if (toggleDevice.playing) {
+      setConfiguration({ device: toggleDevice.id })
+    } else {
+      setConfiguration({ device: null })
+    }
   }
 
   return (
