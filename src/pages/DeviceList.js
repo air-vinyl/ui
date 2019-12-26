@@ -7,7 +7,7 @@ const testData = [
   {
     id: 1,
     name: 'Kitchen HomePod',
-    playing: true,
+    playing: false,
     type: 'homepod'
   }, {
     id: 2,
@@ -17,7 +17,7 @@ const testData = [
   }, {
     id: 3,
     name: 'Hemmabio',
-    playing: true,
+    playing: false,
     type: 'appletv'
   }
 ]
@@ -30,6 +30,8 @@ function DeviceList () {
     setDevices(devices.map(device => {
       if (device.id === toggleDevice.id) {
         device.playing = !device.playing
+      } else {
+        device.playing = false
       }
       return device
     }))
