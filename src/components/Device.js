@@ -1,5 +1,6 @@
 import React from 'react'
 import CheckBox from '../components/CheckBox'
+import DeviceIcon from './DeviceIcon'
 
 function Device ({ device, onTogglePlaying }) {
   const containerStyle = {
@@ -16,6 +17,11 @@ function Device ({ device, onTogglePlaying }) {
     boxSizing: 'border-box'
   }
 
+  const pStyle = {
+    flex: 1,
+    marginLeft: 10
+  }
+
   const borderStyle = {
     background: 'linear-gradient(to right, #fff, #ccc, #fff)',
     width: '100%',
@@ -30,7 +36,8 @@ function Device ({ device, onTogglePlaying }) {
     <div onClick={toggleClick} style={containerStyle}>
       <div style={rowStyle}>
         <CheckBox state={device.playing} onClick={() => {}} />
-        <p className='italics'>{device.name}</p>
+        <p style={pStyle} className='italics'>{device.name}</p>
+        <DeviceIcon model={device.model} />
       </div>
       <div style={borderStyle} />
     </div>
