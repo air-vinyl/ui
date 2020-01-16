@@ -2,7 +2,7 @@ import React from 'react'
 import CheckBox from '../components/CheckBox'
 import DeviceIcon from './DeviceIcon'
 
-function Device ({ device, onTogglePlaying }) {
+function Device ({ device, onTogglePlaying, isPlaying }) {
   const containerStyle = {
     flexDirection: 'column',
     width: '100%'
@@ -35,7 +35,7 @@ function Device ({ device, onTogglePlaying }) {
   return (
     <div onClick={toggleClick} style={containerStyle}>
       <div style={rowStyle}>
-        <CheckBox state={device.playing} onClick={() => {}} />
+        <CheckBox state={isPlaying} onClick={() => {}} />
         <p style={pStyle} className='italics'>{device.name}</p>
         <DeviceIcon model={device.model} />
       </div>
