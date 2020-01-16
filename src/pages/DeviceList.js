@@ -8,51 +8,51 @@ import VolumeSlider from '../components/VolumeSlider'
 async function setConfiguration (params) {
   const body = JSON.stringify(params)
   const headers = { 'Content-Type': 'application/json' }
-  await fetch('/api/configuration', { method: 'PATCH', body, headers })
+  await fetch('/api', { method: 'PUT', body, headers })
 }
 
-async function getDevices () {
+async function getConfiguration () {
   console.log('fetching!')
-  const res = await fetch('http://localhost:3000/api/devices')
+  const res = await fetch('/api')
   const body = await res.json()
   console.log(body)
   return body
 }
 
 function DeviceList () {
+  const [device, setDevice] = useState(null)
   const [volume, setVolume] = useState(30)
   const [devices, setDevices] = useState([])
 
-  useEffect(() => {
-    getDevices().then(setDevices)
-    const id = setInterval(async () => {
-      console.log('fetching')
-      getDevices().then(setDevices)
-    }, 5000)
+  async function update () {
+    const { device, volume, devices } = await getConfiguration()
+    setDevice(device)
+    if (volume !== null) setVolume(volume)
+    setDevices(devices)
+  }
 
+  useEffect(() => {
+    update()
+    const id = setInterval(update, 5000)
     return () => clearInterval(id)
   }, [])
 
-  const onTogglePlaying = (toggleDevice) => {
-    setDevices(devices.map(device => {
-      if (device.id === toggleDevice.id) {
-        device.playing = !device.playing
-      } else {
-        device.playing = false
-      }
-      return device
-    }))
-    if (toggleDevice.playing) {
-      setConfiguration({ device: toggleDevice.id })
-    } else {
-      setConfiguration({ device: null })
-    }
+  const handleVolume = (volume) => {
+    setVolume(volume)
+    setConfiguration({ device, volume })
+  }
+
+  const handleTogglePlaying = (toggleDevice) => {
+    const nextDevice = (device === toggleDevice.id) ? null : toggleDevice.id
+
+    setDevice(nextDevice)
+    setConfiguration({ device: nextDevice, volume })
   }
 
   return (
     <div className='deviceList'>
-      <VolumeSlider onVolume={setVolume} volume={volume} />
-      {devices.map((device) => <Device onTogglePlaying={onTogglePlaying} key={device.id} device={device} />)}
+      <VolumeSlider onVolume={handleVolume} volume={volume} />
+      {devices.map((d) => <Device key={d.id} device={d} isPlaying={d.id === device} onTogglePlaying={handleTogglePlaying} />)}
     </div>
   )
 }

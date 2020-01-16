@@ -4,14 +4,17 @@ import homepod from '../img/devices/homepod.svg'
 import speaker from '../img/devices/speaker.svg'
 import tv from '../img/devices/tv.svg'
 
-function DeviceIcon ({ model }) {
-  let img = null
+function DeviceIcon ({ model = '' }) {
+  let alt, src
   if (model.includes('AudioAccessory')) {
-    img = homepod
+    alt = 'HomePod'
+    src = homepod
   } else if (model.includes('TV')) {
-    img = tv
+    alt = 'TV'
+    src = tv
   } else { // AirPort etc
-    img = speaker
+    alt = 'Speaker'
+    src = speaker
   }
 
   const imgStyle = {
@@ -20,7 +23,7 @@ function DeviceIcon ({ model }) {
   }
 
   return (
-    <img style={imgStyle} src={img} />
+    <img style={imgStyle} alt={alt} src={src} />
   )
 }
 
