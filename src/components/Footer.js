@@ -5,17 +5,12 @@ import { version } from '../../package.json'
 const containerStyle = {
   width: '100%',
   flexDirection: 'row',
-  alignItems: 'center',
-  position: 'absolute',
-  bottom: 0,
+  display: 'flex',
+  flexGrow: 1,
+  alignItems: 'flex-end',
   justifyContent: 'space-between',
   boxSizing: 'border-box',
   padding: '0 20px'
-}
-
-const linkTextStyle = {
-  textDecoration: 'none',
-  marginRight: 10
 }
 
 function Footer () {

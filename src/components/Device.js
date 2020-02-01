@@ -3,22 +3,28 @@ import CheckBox from '../components/CheckBox'
 import DeviceIcon from './DeviceIcon'
 
 const containerStyle = {
+  display: 'flex',
   flexDirection: 'column',
   width: '100%'
 }
 
 const rowStyle = {
+  display: 'flex',
   width: '100%',
   flexDirection: 'row',
   justifyContent: 'space-between',
   alignItems: 'center',
-  padding: '0 15px',
+  padding: '6px 15px',
   boxSizing: 'border-box'
 }
 
 const pStyle = {
   flex: 1,
-  marginLeft: 10
+  marginLeft: 10,
+  color: '#999',
+  textOverflow: 'ellipsis',
+  overflow: 'hidden',
+  whiteSpace: 'nowrap'
 }
 
 const borderStyle = {
@@ -36,7 +42,7 @@ function Device ({ device, onTogglePlaying, isPlaying }) {
     <div onClick={toggleClick} style={containerStyle}>
       <div style={rowStyle}>
         <CheckBox state={isPlaying} onClick={() => {}} />
-        <p style={pStyle} className='italics'>{device.name}</p>
+        <p style={pStyle}>{device.name}</p>
         <DeviceIcon model={device.model} />
       </div>
 

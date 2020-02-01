@@ -45,6 +45,10 @@ function DeviceList () {
 
   const handleVolume = (volume) => {
     setVolume(volume)
+    // setConfiguration({ device, volume })
+  }
+
+  const updateVolume = () => {
     setConfiguration({ device, volume })
   }
 
@@ -57,7 +61,7 @@ function DeviceList () {
 
   return (
     <div style={containerStyle}>
-      <VolumeSlider onVolume={handleVolume} volume={volume} />
+      <VolumeSlider onRelease={updateVolume} onVolume={handleVolume} volume={volume} />
       {devices.map((d) => <Device key={d.id} device={d} isPlaying={d.id === device} onTogglePlaying={handleTogglePlaying} />)}
     </div>
   )
