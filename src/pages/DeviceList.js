@@ -43,12 +43,11 @@ function DeviceList () {
     return () => clearInterval(id)
   }, [])
 
-  const handleVolume = (volume) => {
+  const handleVolumeChange = (volume) => {
     setVolume(volume)
-    // setConfiguration({ device, volume })
   }
 
-  const updateVolume = () => {
+  const handleVolumeChangeCommitted = () => {
     setConfiguration({ device, volume })
   }
 
@@ -61,7 +60,7 @@ function DeviceList () {
 
   return (
     <div style={containerStyle}>
-      <VolumeSlider onRelease={updateVolume} onVolume={handleVolume} volume={volume} />
+      <VolumeSlider onChange={handleVolumeChange} onChangeCommitted={handleVolumeChangeCommitted} value={volume} />
       {devices.map((d) => <Device key={d.id} device={d} isPlaying={d.id === device} onTogglePlaying={handleTogglePlaying} />)}
     </div>
   )

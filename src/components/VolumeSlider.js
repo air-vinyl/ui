@@ -60,14 +60,10 @@ const IOSSlider = withStyles({
   }
 })(Slider)
 
-function VolumeSlider ({ onVolume, volume, onRelease }) {
-  const handleChange = (event, newValue) => {
-    onVolume(newValue)
-  }
-
+function VolumeSlider ({ onChange, onChangeCommitted, value }) {
   return (
-    <div style={containerStyle} onMouseLeave={(volume) => onRelease} onMouseUp={(volume) => onRelease}>
-      <IOSSlider value={volume} onChange={handleChange} aria-labelledby='continuous-slider' />
+    <div style={containerStyle}>
+      <IOSSlider value={value} onChange={(_, newValue) => onChange(newValue)} onChangeCommitted={onChangeCommitted} aria-labelledby='continuous-slider' />
     </div>
   )
 }
